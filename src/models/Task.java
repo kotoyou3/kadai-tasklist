@@ -10,17 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "messages")
-public class Message {
+@Table(name = "tasks")
+public class Task {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "title", length = 255, nullable = false)
-    private String title;
-
-    @Column(name = "content", length = 255, nullable = false)
+    @Column(name = "content", nullable = false)
     private String content;
 
     @Column(name = "created_at", nullable = false)
@@ -29,20 +26,14 @@ public class Message {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    // Getters and Setters
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
