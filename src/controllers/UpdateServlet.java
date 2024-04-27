@@ -13,49 +13,33 @@ import javax.servlet.http.HttpServletResponse;
 import models.Task;
 import utils.DBUtil;
 
-/**
- * Servlet implementation class UpdateServlet
- */
 @WebServlet("/update")
 public class UpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor.
-     */
     public UpdateServlet() {
         super();
     }
 
-    /**
-     * Handles the HTTP POST method to update an existing task.
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            // セッションスコープからタスクのIDを取得して
-            // 該当のIDのタスク1件のみをデータベースから取得
             Task task = em.find(Task.class, (Integer)(request.getSession().getAttribute("task_id")));
 
-            // フォームの内容を各フィールドに上書き
             String content = request.getParameter("content");
             task.setContent(content);
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            task.setUpdated_at(currentTime);       // 更新日時のみ上書き
+            task.setUpdated_at(currentTime);
 
-            // データベースを更新
             em.getTransaction().begin();
             em.getTransaction().commit();
             em.close();
 
-            // セッションスコープの不要なデータを削除
             request.getSession().removeAttribute("task_id");
 
-            // indexページへリダイレクト
             response.sendRedirect(request.getContextPath() + "/index");
         }
     }

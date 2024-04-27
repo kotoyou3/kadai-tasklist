@@ -12,41 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import models.Task;
 import utils.DBUtil;
 
-/**
- * Servlet implementation class DestroyServlet
- */
 @WebServlet("/destroy")
 public class DestroyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public DestroyServlet() {
         super();
     }
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            // 該当のIDのタスク1件のみをデータベースから取得
             Task task = em.find(Task.class, (Integer)(request.getSession().getAttribute("task_id")));
 
-            // トランザクション開始
             em.getTransaction().begin();
-            em.remove(task); // タスクを削除
+            em.remove(task);
             em.getTransaction().commit();
             em.close();
 
-            // セッションスコープの不要なデータを削除
             request.getSession().removeAttribute("task_id");
 
-            // indexページへリダイレクト
             response.sendRedirect(request.getContextPath() + "/index");
         }
     }

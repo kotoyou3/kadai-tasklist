@@ -14,24 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import models.Task;
 import utils.DBUtil;
 
-/**
- * Servlet implementation class IndexServlet
- */
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor.
-     */
     public IndexServlet() {
         super();
     }
 
-    /**
-     * Handles the HTTP GET method.
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 

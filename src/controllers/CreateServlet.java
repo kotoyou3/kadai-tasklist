@@ -13,24 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import models.Task;
 import utils.DBUtil;
 
-/**
- * Servlet implementation class CreateServlet
- */
 @WebServlet("/create")
 public class CreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor.
-     */
     public CreateServlet() {
         super();
     }
 
-    /**
-     * Handles the HTTP POST method to create a new task.
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
         if (_token != null && _token.equals(request.getSession().getId())) {
