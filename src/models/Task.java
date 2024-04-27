@@ -7,9 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t")
+})
 @Table(name = "tasks")
 public class Task {
     @Id
@@ -25,8 +30,6 @@ public class Task {
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
-
-    // Getters and Setters
 
     public Integer getId() {
         return id;

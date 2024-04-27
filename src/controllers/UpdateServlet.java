@@ -35,6 +35,7 @@ public class UpdateServlet extends HttpServlet {
             task.setUpdated_at(currentTime);
 
             em.getTransaction().begin();
+            em.merge(task); // ここでタスクの更新を確定させます。
             em.getTransaction().commit();
             em.close();
 
