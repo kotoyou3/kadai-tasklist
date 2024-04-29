@@ -25,13 +25,15 @@ public class ShowServlet extends HttpServlet {
             throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        try {
-            Task task = em.find(Task.class, Integer.parseInt(request.getParameter("id")));
-            request.setAttribute("task", task);
-        } finally {
-            em.close();
-        }
+        // URLから取得したidの値でタスクを検索
+        Task task = em.find(Task.class, Integer.parseInt(request.getParameter("id")));
 
+        em.close();
+
+        // タスクの情報をリクエストにセット
+        request.setAttribute("task", task);
+
+        // 正しいJSPのパスにフォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/show.jsp");
         rd.forward(request, response);
     }

@@ -6,10 +6,6 @@
 
         <h2>id : ${task.id} のタスク詳細ページ</h2>
 
-        <!-- タイトルが存在しないため、以下の行はコメントアウトします。
-        <p>タイトル：<c:out value="${task.title}" /></p>
-        -->
-
         <p>タスクの内容：<c:out value="${task.content}" /></p>
         <p>作成日時：<fmt:formatDate value="${task.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
         <p>更新日時：<fmt:formatDate value="${task.updatedAt}" pattern="yyyy-MM-dd HH:mm:ss" /></p>

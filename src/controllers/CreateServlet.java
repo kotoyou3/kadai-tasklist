@@ -30,11 +30,11 @@ public class CreateServlet extends HttpServlet {
             Task task = new Task();
 
             String content = request.getParameter("content");
-            task.setContent(content);
+            task.setContent(content);  // これは正しいです。
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            task.setCreated_at(currentTime);
-            task.setUpdated_at(currentTime);
+            task.setCreatedAt(currentTime);  // メソッド名を修正しました。
+            task.setUpdatedAt(currentTime);  // メソッド名を修正しました。
 
             em.persist(task);
             em.getTransaction().commit();
