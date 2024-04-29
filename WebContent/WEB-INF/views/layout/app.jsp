@@ -3,12 +3,12 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>メッセージボード</title>
+        <title>タスクリストアプリケーション</title> <!-- ここを適切なタイトルに変更 -->
     </head>
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>メッセージボード アプリケーション</h1>
+                <h1>タスクリスト管理</h1> <!-- ここをアプリケーションに合った見出しに変更 -->
             </div>
             <div id="content">
                 ${param.content}
